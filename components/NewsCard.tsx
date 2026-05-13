@@ -1,16 +1,23 @@
 type Props = {
+
   title:string
   excerpt:string
   sentiment:string
   slug:string
+
 }
 
 export default function NewsCard({
+
   title,
   excerpt,
   sentiment,
   slug
+
 }:Props){
+
+
+console.log(slug)
 
   return(
 

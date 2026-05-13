@@ -6,12 +6,15 @@ export default function Ticker({coins}:Props){
 
  return(
 
-  <div className="
-  border-y
-  border-white/5
-  bg-black/20
-  backdrop-blur-xl
-  ">
+  <div
+   id="mercado"
+   className="
+   border-y
+   border-white/5
+   bg-black/20
+   backdrop-blur-xl
+   "
+  >
 
    <div className="
    max-w-7xl

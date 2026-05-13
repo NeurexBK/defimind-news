@@ -18,17 +18,43 @@ export default function Header(){
         DeFiMind
       </div>
 
-      <nav className="
-      flex
-      gap-6
-      text-white/70
-      text-sm
-      ">
-        <a href="/mercado">Mercado</a>
-        <a href="#">Notícias</a>
-        <a href="#">IA</a>
-        <a href="#">Trending</a>
-      </nav>
+
+<nav className="
+flex
+items-center
+gap-8
+text-white/70
+">
+
+  <a
+   href="/#mercado"
+   className="hover:text-purple-400 transition"
+  >
+    Mercado
+  </a>
+
+  <a
+   href="/#noticias"
+   className="hover:text-purple-400 transition"
+  >
+    Notícias
+  </a>
+
+  <a
+   href="/#ia"
+   className="hover:text-purple-400 transition"
+  >
+    IA
+  </a>
+
+  <a
+   href="/#trending"
+   className="hover:text-purple-400 transition"
+  >
+    Trending
+  </a>
+
+</nav>
 
     </header>
 

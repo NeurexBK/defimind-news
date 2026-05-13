@@ -1,195 +1,128 @@
-import Header from "@/components/Header"
-import { news } from "@/data/news"
+import Link from "next/link"
+import news from "@/data/generated-news.json"
 
-export default async function ArticlePage({
- params
-}:any){
+type Props = {
+  params: Promise<{
+    slug: string
+  }>
+}
 
- const article = news.find(
-  item => item.slug === params.slug
- )
+export default async function NewsPage({ params }: Props) {
 
- if(!article){
+  const resolvedParams = await params
 
-  return(
-
-   <main className="
-   min-h-screen
-   flex
-   items-center
-   justify-center
-   ">
-
-    <div className="text-center">
-
-     <h1 className="
-     text-5xl
-     font-black
-     mb-4
-     ">
-      Notícia não encontrada
-     </h1>
-
-     <a
-      href="/"
-      className="
-      bg-purple-600
-      px-6
-      py-3
-      rounded-2xl
-      inline-block
-      mt-6
-      "
-     >
-      Voltar
-     </a>
-
-    </div>
-
-   </main>
-
+  const article = news.find(
+    item => item.slug === resolvedParams.slug
   )
 
- }
+  if (!article) {
 
- return(
+    return (
 
-  <main className="min-h-screen">
-
-   <Header />
-
-   <section className="
-   max-w-4xl
-   mx-auto
-   px-6
-   py-20
-   ">
-
-    <div className="
-    flex
-    items-center
-    gap-4
-    mb-6
-    ">
-
-     <div className="
-     bg-purple-500/10
-     text-purple-400
-     px-4
-     py-2
-     rounded-full
-     text-sm
-     ">
-      {article.category}
-     </div>
-
-     <div className="
-     text-white/50
-     text-sm
-     ">
-      Por Neurex AI
-     </div>
-
-    </div>
-
-    <h1 className="
-    text-6xl
-    font-black
-    leading-tight
-    mb-8
-    ">
-      {article.title}
-    </h1>
-
-    <p className="
-    text-2xl
-    text-white/60
-    leading-relaxed
-    mb-12
-    ">
-      {article.excerpt}
-    </p>
-
-    <div className="
-    card
-    p-10
-    text-lg
-    leading-9
-    whitespace-pre-line
-    mb-10
-    ">
-      {article.content}
-    </div>
-
-    <div className="
-    card
-    p-8
-    border
-    border-purple-500/20
-    ">
-
-     <div className="
-     text-purple-400
-     mb-3
-     ">
-      Análise da Neurex AI
-     </div>
-
-     <h2 className="
-     text-3xl
-     font-bold
-     mb-6
-     ">
-      Sentimento do Mercado
-     </h2>
-
-     <div className="
-     flex
-     items-center
-     gap-4
-     ">
-
-      <div className="
-      bg-purple-600
-      px-4
-      py-2
-      rounded-full
-      font-bold
+      <main className="
+      min-h-screen
+      flex
+      flex-col
+      items-center
+      justify-center
+      bg-[#030712]
+      text-white
       ">
-       {article.sentiment}
+
+        <h1 className="
+        text-5xl
+        font-bold
+        mb-6
+        ">
+          Notícia não encontrada
+        </h1>
+
+        <p className="mb-8 text-white/60">
+          Slug procurado:
+          {" "}
+          {resolvedParams.slug}
+        </p>
+
+        <Link
+          href="/"
+          className="
+          bg-purple-600
+          px-6
+          py-3
+          rounded-2xl
+          "
+        >
+          Voltar
+        </Link>
+
+      </main>
+
+    )
+
+  }
+
+  return (
+
+    <main className="
+    min-h-screen
+    bg-[#030712]
+    text-white
+    px-6
+    py-20
+    ">
+
+
+<div className="
+max-w-4xl
+mx-auto
+">
+
+ <a
+  href="/"
+  className="
+  inline-flex
+  items-center
+  gap-2
+  text-purple-400
+  hover:text-purple-300
+  mb-10
+  transition
+  "
+ >
+
+  ← Voltar ao Dashboard
+
+ </a>
+
+     
+   <div className="
+        text-purple-400
+        mb-4
+        ">
+          Por Neurex AI
+        </div>
+
+        <h1 className="
+        text-5xl
+        font-bold
+        mb-8
+        ">
+          {article.title}
+        </h1>
+
+        <div className="
+        text-white/70
+        leading-8
+        text-lg
+        whitespace-pre-line
+        ">
+          {article.content}
+        </div>
+
       </div>
 
-      <div className="text-white/60">
-       Segundo os modelos da Neurex AI, o mercado continua apresentando forte atividade.
-      </div>
+    </main>
 
-     </div>
-
-    </div>
-
-    <div className="mt-12">
-
-     <a
-      href="/"
-      className="
-      glow
-      bg-purple-600
-      px-8
-      py-4
-      rounded-2xl
-      font-bold
-      inline-block
-      "
-     >
-      Voltar para Home
-     </a>
-
-    </div>
-
-   </section>
-
-  </main>
-
- )
+  )
 
 }

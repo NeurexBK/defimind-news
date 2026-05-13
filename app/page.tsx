@@ -1,81 +1,90 @@
 
-import { news } from "@/data/news"
+"use client"
+import { useState } from "react"
+import SearchBar from "@/components/SearchBar"
+import Trending from "@/components/Trending"
+import generatedNews from "@/data/generated-news.json"
 import Market from "@/components/Market"
 import { getMarket } from "@/lib/coingecko"
 import Ticker from "@/components/Ticker"
 import Header from "@/components/Header"
-import NewsCard from "@/components/NewsCard"
-import { getNews } from "@/lib/rss"
 
-export default async function Home(){
-  
-  const market = await getMarket()
-  const news = await getNews()
+
+ export default function Home(){
+
+  const [search,setSearch] = useState("")
+  const market:any[] = []
 
   return(
 
     <main className="min-h-screen">
 
       <Header />
-      
+
       <Ticker coins={market} />
-      <section className="
-      max-w-7xl
-      mx-auto
-      px-6
-      py-24
-      ">
+       
 
-        <div className="max-w-3xl">
+<section className="
+max-w-7xl
+mx-auto
+px-6
+py-24
+">
 
-          <div className="
-          inline-block
-          px-4
-          py-2
-          rounded-full
-          bg-purple-500/10
-          text-purple-400
-          mb-6
-          ">
-            🚀 Crypto Intelligence
-          </div>
+  <div className="max-w-3xl">
 
-          <h1 className="
-          text-6xl
-          font-black
-          leading-tight
-          mb-6
-          ">
-            Notícias Crypto
-            em Tempo Real
-          </h1>
+    <div className="
+    inline-block
+    px-4
+    py-2
+    rounded-full
+    bg-purple-500/10
+    text-purple-400
+    mb-6
+    ">
+      🚀 Crypto Intelligence
+    </div>
 
-          <p className="
-          text-xl
-          text-white/70
-          mb-10
-          ">
-            Tudo sobre Bitcoin,
-            Ethereum, ETFs,
-            DeFi e IA.
-          </p>
+    <h1 className="
+    text-6xl
+    font-black
+    leading-tight
+    mb-6
+    ">
+      Notícias Crypto
+      em Tempo Real
+    </h1>
 
-          <button className="
-          glow
-          bg-purple-600
-          px-8
-          py-4
-          rounded-2xl
-          font-bold
-          text-lg
-          ">
-            Explorar Agora
-          </button>
+    <p className="
+    text-xl
+    text-white/70
+    mb-10
+    ">
+      Tudo sobre Bitcoin,
+      Ethereum, ETFs,
+      DeFi e IA.
+    </p>
 
-        </div>
+    <SearchBar
+      onSearch={setSearch}
+    />
 
+    <button className="
+    glow
+    bg-purple-600
+    px-8
+    py-4
+    rounded-2xl
+    font-bold
+    text-lg
+    ">
+      Explorar Agora
+    </button>
 
-      </section>
+  </div>
+
+</section>
+
 
       <section className="
       max-w-7xl
@@ -90,6 +99,7 @@ export default async function Home(){
         justify-between
         mb-10
         ">
+
           <h2 className="text-3xl font-bold">
             Últimas Notícias
           </h2>
@@ -97,6 +107,7 @@ export default async function Home(){
           <div className="text-purple-400">
             Atualizado ao vivo
           </div>
+
         </div>
 
         <div className="
@@ -106,20 +117,71 @@ export default async function Home(){
         gap-6
         ">
 
-{news.map((item,index)=>(
+          {generatedNews.map((item,index)=>(
 
- <NewsCard
-  key={index}
-  title={item.title}
-  excerpt={item.excerpt}
-  sentiment={item.sentiment}
-  slug={item.slug}
- />
+            <a
+              key={index}
+              href={`/noticias/${item.slug}`}
+              className="
+              block
+              p-6
+              rounded-3xl
+              border
+              border-white/10
+              bg-white/5
+              hover:border-purple-500
+              transition
+              duration-300
+              "
+            >
 
-))}
+              <div className="
+              flex
+              justify-between
+              mb-4
+              ">
+
+                <div className="
+                text-purple-400
+                text-xs
+                ">
+                  Por Neurex AI
+                </div>
+
+                <div className="
+                text-white/50
+                text-xs
+                ">
+                  {item.sentiment}
+                </div>
+
+              </div>
+
+              <h2 className="
+              text-2xl
+              font-bold
+              mb-4
+              ">
+                {item.title}
+              </h2>
+
+              <p className="
+              text-white/70
+              ">
+                {item.excerpt}
+              </p>
+
+            </a>
+
+          ))}
+
         </div>
 
       </section>
+
+
+   <Trending coins={market} />
+
 
     </main>
 

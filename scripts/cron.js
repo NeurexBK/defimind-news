@@ -2,7 +2,7 @@ const cron = require("node-cron")
 
 const { exec } = require("child_process")
 
-cron.schedule("*/45 * * * *",()=>{
+cron.schedule("*/15 * * * *",()=>{
 
  console.log("🚀 Gerando notícia automática...")
 
