@@ -1,10 +1,64 @@
 import Link from "next/link"
 import news from "@/data/generated-news.json"
+import type { Metadata } from "next"
 
 type Props = {
   params: Promise<{
     slug: string
   }>
+}
+
+export async function generateMetadata({
+  params,
+}: Props): Promise<Metadata> {
+
+  const resolvedParams = await params
+
+  const article = news.find(
+    item => item.slug === resolvedParams.slug
+  )
+
+  if (!article) {
+
+    return {
+      title: "DefiMind",
+      description: "Crypto Intelligence powered by Neurex AI",
+    }
+
+  }
+
+  return {
+
+    title: article.title,
+
+    description: article.excerpt,
+
+    openGraph: {
+
+      title: article.title,
+
+      description: article.excerpt,
+
+      url: `https://defimindnews.cloud/noticias/${article.slug}`,
+
+      siteName: "DefiMind",
+
+      type: "article",
+
+    },
+
+    twitter: {
+
+      card: "summary_large_image",
+
+      title: article.title,
+
+      description: article.excerpt,
+
+    }
+
+  }
+
 }
 
 export default async function NewsPage({ params }: Props) {
