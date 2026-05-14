@@ -1,5 +1,6 @@
 "use client"
 
+import Newsletter from "@/components/Newsletter"
 import SearchBar from "@/components/SearchBar"
 import { useEffect,useState } from "react"
 import Trending from "@/components/Trending"
@@ -213,6 +214,8 @@ py-24
 
 
    <Trending coins={market || []} />
+
+<Newsletter />
 
     </main>
 
