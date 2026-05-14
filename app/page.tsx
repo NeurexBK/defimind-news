@@ -1,10 +1,6 @@
-
 "use client"
-import { useState } from "react"
+
 import SearchBar from "@/components/SearchBar"
-
-"use client"
-
 import { useEffect,useState } from "react"
 import Trending from "@/components/Trending"
 import generatedNews from "@/data/generated-news.json"
@@ -17,7 +13,6 @@ import Header from "@/components/Header"
 
  export default function Home(){
 
-  const [search,setSearch] = useState("")
 const [search,setSearch] = useState("")
 
 const [market,setMarket] = useState<any[]>([])
