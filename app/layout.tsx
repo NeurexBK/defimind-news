@@ -18,6 +18,12 @@ export const metadata: Metadata = {
   description:
     "Notícias crypto inteligentes geradas pela Neurex AI.",
 
+  icons:{
+    icon:"/logo.png",
+    shortcut:"/logo.png",
+    apple:"/logo.png",
+  },
+
   openGraph: {
     title: "DefiMind",
     description:
