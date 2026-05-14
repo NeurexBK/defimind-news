@@ -48,6 +48,23 @@ useEffect(()=>{
 
 
 
+const filteredNews = generatedNews.filter((item)=>{
+
+  const query = search.toLowerCase()
+
+  return (
+
+    item.title.toLowerCase().includes(query) ||
+
+    item.excerpt.toLowerCase().includes(query) ||
+
+    item.content.toLowerCase().includes(query)
+
+  )
+
+})
+
+
   return(
 
     <main className="min-h-screen">
@@ -160,8 +177,7 @@ useEffect(()=>{
         lg:grid-cols-3
         gap-6
         ">
-
-          {generatedNews.map((item,index)=>(
+          {filteredNews.map((item,index)=>(
 
             <a
               key={index}
