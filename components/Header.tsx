@@ -1,3 +1,6 @@
+
+import Image from "next/image"
+
 export default function Header(){
 
   return(
@@ -11,13 +14,40 @@ export default function Header(){
     mx-auto
     ">
 
-      <div className="
-      text-3xl
-      font-black
-      ">
-        DeFiMind
-      </div>
 
+<div className="
+flex
+items-center
+gap-3
+">
+
+  <Image
+    src="/logo.png"
+    alt="DefiMind"
+    width={50}
+    height={50}
+    className="rounded-xl"
+  />
+
+  <div>
+
+    <div className="
+    text-2xl
+    font-black
+    ">
+      DefiMind
+    </div>
+
+    <div className="
+    text-xs
+    text-purple-400
+    ">
+      Crypto Intelligence
+    </div>
+
+  </div>
+
+</div>
 
 <nav className="
 flex
