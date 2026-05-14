@@ -1,45 +1,60 @@
 type Props = {
-
   coins:any[]
-
 }
 
-export default function Trending({
-  coins
-}:Props){
+export default function Trending({coins}:Props){
 
-  return(
+  if(!coins || coins.length === 0){
 
- <section
- id="trending"
- className="
-    max-w-7xl
-    mx-auto
-    px-6
-    pb-20
-    ">
+    return(
 
-      <div className="
-      flex
-      items-center
-      justify-between
-      mb-10
-      ">
+      <section
+        id="trending"
+        className="
+        max-w-7xl
+        mx-auto
+        px-6
+        pb-24
+        "
+      >
 
         <h2 className="
-        text-3xl
-        font-bold
+        text-4xl
+        font-black
+        mb-10
         ">
           🔥 Trending
         </h2>
 
-        <div className="
-        text-purple-400
-        ">
-          Mercado em movimento
+        <div className="text-white/50">
+          Carregando mercado...
         </div>
 
-      </div>
+      </section>
+
+    )
+
+  }
+
+  return(
+
+    <section
+      id="trending"
+      className="
+      max-w-7xl
+      mx-auto
+      px-6
+      pb-24
+      "
+    >
+
+      <h2 className="
+      text-4xl
+      font-black
+      mb-10
+      ">
+        🔥 Trending
+      </h2>
 
       <div className="
       grid
@@ -48,79 +63,56 @@ export default function Trending({
       gap-6
       ">
 
-        {coins.slice(0,6).map((coin,index)=>(
+        {coins.slice(0,6).map((coin:any)=>(
 
           <div
-            key={index}
+            key={coin.id}
             className="
-            bg-white/5
+            p-6
+            rounded-3xl
             border
             border-white/10
-            rounded-3xl
-            p-6
-            hover:border-purple-500
-            transition
-            duration-300
+            bg-white/5
             "
           >
 
             <div className="
             flex
             items-center
-            gap-4
+            justify-between
             mb-4
             ">
 
-              <img
-                src={coin.image}
-                alt={coin.name}
-                className="
-                w-12
-                h-12
-                rounded-full
-                "
-              />
+              <div className="
+              text-2xl
+              font-black
+              uppercase
+              ">
+                {coin.symbol}
+              </div>
 
-              <div>
-
-                <h3 className="
-                text-xl
-                font-bold
-                ">
-                  {coin.name}
-                </h3>
-
-                <div className="
-                text-white/50
-                uppercase
-                ">
-                  {coin.symbol}
-                </div>
-
+              <div className="
+              text-purple-400
+              ">
+                #{coin.market_cap_rank}
               </div>
 
             </div>
 
             <div className="
-            text-3xl
+            text-4xl
             font-black
-            mb-2
+            mb-4
             ">
-              ${coin.current_price}
+              $
+              {coin.current_price?.toLocaleString()}
             </div>
 
-            <div className={`
+            <div className="
+            text-green-400
             text-lg
-            font-bold
-            ${
-              coin.price_change_percentage_24h > 0
-              ? "text-green-400"
-              : "text-red-400"
-            }
-            `}>
-
+            ">
               {coin.price_change_percentage_24h?.toFixed(2)}%
-
             </div>
 
           </div>
@@ -134,4 +126,3 @@ export default function Trending({
   )
 
 }
-

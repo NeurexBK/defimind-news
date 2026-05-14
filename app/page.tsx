@@ -2,6 +2,10 @@
 "use client"
 import { useState } from "react"
 import SearchBar from "@/components/SearchBar"
+
+"use client"
+
+import { useEffect,useState } from "react"
 import Trending from "@/components/Trending"
 import generatedNews from "@/data/generated-news.json"
 import Market from "@/components/Market"
@@ -10,10 +14,43 @@ import Ticker from "@/components/Ticker"
 import Header from "@/components/Header"
 
 
+
  export default function Home(){
 
   const [search,setSearch] = useState("")
-  const market:any[] = []
+const [search,setSearch] = useState("")
+
+const [market,setMarket] = useState<any[]>([])
+
+useEffect(()=>{
+
+  async function loadMarket(){
+
+    try{
+
+      const response = await fetch(
+
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false"
+
+      )
+
+      const data = await response.json()
+
+      setMarket(data)
+
+    }catch(error){
+
+      console.log(error)
+
+    }
+
+  }
+
+  loadMarket()
+
+},[])
+
+
 
   return(
 
@@ -180,8 +217,7 @@ py-24
       </section>
 
 
-   <Trending coins={market} />
-
+   <Trending coins={market || []} />
 
     </main>
 
