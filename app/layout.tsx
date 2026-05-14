@@ -69,52 +69,61 @@ export default function RootLayout({
 
           {`
 
-            window.dataLayer =
-            window.dataLayer || [];
 
-            function gtag(){
-              dataLayer.push(arguments);
-            }
+window.dataLayer =
+window.dataLayer || [];
 
-            gtag('js', new Date());
+function gtag(){
+  dataLayer.push(arguments);
+}
 
-            gtag(
-              'config',
-              'G-VZDMVH6QGN'
-            );
+gtag('js', new Date());
 
-          `}
+gtag(
+  'config',
+  'G-VZDMVH6QGN'
+);
 
-        </Script>
+`}
 
-        <Script
-          src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
-          strategy="afterInteractive"
-        />
+</Script>
 
-        <Script
-          id="onesignal-init"
-          strategy="afterInteractive"
-        >
+{process.env.NODE_ENV === "production" && (
 
-          {`
+  <>
 
-            window.OneSignalDeferred =
-            window.OneSignalDeferred || [];
+    <Script
+      src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
+      strategy="afterInteractive"
+    />
 
-            OneSignalDeferred.push(async function(OneSignal){
+    <Script
+      id="onesignal-init"
+      strategy="afterInteractive"
+    >
 
-              await OneSignal.init({
+      {`
 
-                appId: "6898177d-34db-4b25-b3de-4ea213e3f2db",
+        window.OneSignalDeferred =
+        window.OneSignalDeferred || [];
 
-              });
+        OneSignalDeferred.push(async function(OneSignal){
 
-            });
+          await OneSignal.init({
 
-          `}
+            appId: "6898177d-34db-4b25-b3de-4ea213e3f2db",
 
-        </Script>
+          });
+
+        });
+
+      `}
+
+    </Script>
+
+  </>
+
+)}
 
       </body>
 
