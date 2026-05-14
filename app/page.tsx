@@ -56,13 +56,15 @@ useEffect(()=>{
 
       <Ticker coins={market} />
        
+<section
+      id="noticias"
+      className="
+      max-w-7xl
+      mx-auto
+      px-6
+      pb-20
+      ">
 
-<section className="
-max-w-7xl
-mx-auto
-px-6
-py-24
-">
 
   <div className="max-w-3xl">
 
@@ -102,17 +104,26 @@ py-24
       onSearch={setSearch}
     />
 
-    <button className="
-    glow
-    bg-purple-600
-    px-8
-    py-4
-    rounded-2xl
-    font-bold
-    text-lg
-    ">
-      Explorar Agora
-    </button>
+<a
+ href="#noticias"
+ className="
+ glow
+ inline-block
+ bg-purple-600
+ hover:bg-purple-500
+ transition
+ px-8
+ py-4
+ rounded-2xl
+ font-bold
+ text-lg
+ "
+>
+
+  Explorar Agora
+
+</a>
+
 
   </div>
 
