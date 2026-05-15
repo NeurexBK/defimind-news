@@ -51,6 +51,16 @@ export default function RootLayout({
       `}
     >
 
+      <head>
+
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2880959670955365"
+          crossOrigin="anonymous"
+        ></script>
+
+      </head>
+
       <body className="
       min-h-full
       flex
@@ -59,47 +69,39 @@ export default function RootLayout({
       text-white
       ">
 
+        {children}
 
-{children}
+        <Script
+          src="
+          https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX
+          "
+          strategy="afterInteractive"
+        />
 
-<Script
- async
- src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2880959670955365"
- crossOrigin="anonymous"
- strategy="afterInteractive"
-/>
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+        >
 
-<Script
-  src="
-  https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX
-  "
-  strategy="afterInteractive"
-/>
+          {`
 
-<Script
-  id="google-analytics"
-  strategy="afterInteractive"
->
+            window.dataLayer =
+            window.dataLayer || [];
 
-  {`
+            function gtag(){
+              dataLayer.push(arguments);
+            }
 
-    window.dataLayer =
-    window.dataLayer || [];
+            gtag('js', new Date());
 
-    function gtag(){
-      dataLayer.push(arguments);
-    }
+            gtag(
+              'config',
+              'G-VZDMVH6QGN'
+            );
 
-    gtag('js', new Date());
+          `}
 
-    gtag(
-      'config',
-      'G-VZDMVH6QGN'
-    );
-
-  `}
-
-</Script>
+        </Script>
 
         {process.env.NODE_ENV === "production" && (
 
