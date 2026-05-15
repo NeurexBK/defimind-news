@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-email/render": "^2.0.8",
+    "@supabase/auth-helpers-nextjs": "^0.15.0",
     "@supabase/supabase-js": "^2.105.4",
     "axios": "^1.16.0",
     "clsx": "^2.1.1",
