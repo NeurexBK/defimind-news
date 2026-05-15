@@ -59,39 +59,47 @@ export default function RootLayout({
       text-white
       ">
 
-        {children}
 
-        <Script
-          src="
-          https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX
-          "
-          strategy="afterInteractive"
-        />
+{children}
 
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-        >
+<Script
+ async
+ src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2880959670955365"
+ crossOrigin="anonymous"
+ strategy="afterInteractive"
+/>
 
-          {`
+<Script
+  src="
+  https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX
+  "
+  strategy="afterInteractive"
+/>
 
-            window.dataLayer =
-            window.dataLayer || [];
+<Script
+  id="google-analytics"
+  strategy="afterInteractive"
+>
 
-            function gtag(){
-              dataLayer.push(arguments);
-            }
+  {`
 
-            gtag('js', new Date());
+    window.dataLayer =
+    window.dataLayer || [];
 
-            gtag(
-              'config',
-              'G-VZDMVH6QGN'
-            );
+    function gtag(){
+      dataLayer.push(arguments);
+    }
 
-          `}
+    gtag('js', new Date());
 
-        </Script>
+    gtag(
+      'config',
+      'G-VZDMVH6QGN'
+    );
+
+  `}
+
+</Script>
 
         {process.env.NODE_ENV === "production" && (
 
