@@ -1,3 +1,4 @@
+import Reactions from "@/components/Reactions"
 import Link from "next/link"
 import news from "@/data/generated-news.json"
 import type { Metadata } from "next"
@@ -125,31 +126,29 @@ export default async function NewsPage({ params }: Props) {
     py-20
     ">
 
+      <div className="
+      max-w-4xl
+      mx-auto
+      ">
 
-<div className="
-max-w-4xl
-mx-auto
-">
+        <a
+          href="/"
+          className="
+          inline-flex
+          items-center
+          gap-2
+          text-purple-400
+          hover:text-purple-300
+          mb-10
+          transition
+          "
+        >
 
- <a
-  href="/"
-  className="
-  inline-flex
-  items-center
-  gap-2
-  text-purple-400
-  hover:text-purple-300
-  mb-10
-  transition
-  "
- >
+          ← Voltar ao Dashboard
 
-  ← Voltar ao Dashboard
+        </a>
 
- </a>
-
-     
-   <div className="
+        <div className="
         text-purple-400
         mb-4
         ">
@@ -164,13 +163,35 @@ mx-auto
           {article.title}
         </h1>
 
-        <div className="
-        text-white/70
-        leading-8
-        text-lg
-        whitespace-pre-line
-        ">
+        <div
+          className="
+          text-white/70
+          leading-8
+          text-lg
+          whitespace-pre-line
+          "
+        >
           {article.content}
+        </div>
+
+        <div className="mt-10">
+          <Reactions slug={article.slug} />
+        </div>
+
+        <div className="mt-6 text-sm text-white/40">
+
+          Publicado em:
+          {" "}
+          {new Date().toLocaleString("pt-BR")}
+
+        </div>
+
+        <div className="mt-2 text-sm text-white/40">
+
+          Fonte:
+          {" "}
+          Neurex AI + Crypto APIs
+
         </div>
 
       </div>
