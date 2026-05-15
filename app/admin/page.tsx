@@ -1,67 +1,88 @@
-import generatedNews from "@/data/generated-news.json"
+```tsx id="k9w2pl"
+export default function AdminPage() {
 
-export default function Admin(){
+  return (
 
- return(
+    <main className="
+    min-h-screen
+    bg-[#030712]
+    text-white
+    p-10
+    ">
 
-  <main className="
-  min-h-screen
-  bg-[#030712]
-  text-white
-  p-10
-  ">
-
-   <h1 className="
-   text-5xl
-   font-black
-   mb-10
-   ">
-    DefiMind Admin
-   </h1>
-
-   <div className="space-y-6">
-
-    {generatedNews.map((item,index)=>(
-
-     <div
-      key={index}
-      className="
-      p-6
-      rounded-3xl
-      border
-      border-white/10
-      bg-white/5
-      "
-     >
+      <h1 className="
+      text-5xl
+      font-black
+      mb-10
+      ">
+        DefiMind Admin
+      </h1>
 
       <div className="
-      text-purple-400
-      text-sm
-      mb-2
+      grid
+      md:grid-cols-3
+      gap-6
       ">
-       {item.category}
+
+        <div className="
+        p-6
+        rounded-3xl
+        border
+        border-white/10
+        bg-white/5
+        ">
+
+          <div className="text-white/50 mb-2">
+            Notícias
+          </div>
+
+          <div className="text-4xl font-black">
+            24
+          </div>
+
+        </div>
+
+        <div className="
+        p-6
+        rounded-3xl
+        border
+        border-white/10
+        bg-white/5
+        ">
+
+          <div className="text-white/50 mb-2">
+            Likes
+          </div>
+
+          <div className="text-4xl font-black">
+            0
+          </div>
+
+        </div>
+
+        <div className="
+        p-6
+        rounded-3xl
+        border
+        border-white/10
+        bg-white/5
+        ">
+
+          <div className="text-white/50 mb-2">
+            Dislikes
+          </div>
+
+          <div className="text-4xl font-black">
+            0
+          </div>
+
+        </div>
+
       </div>
 
-      <h2 className="
-      text-2xl
-      font-bold
-      mb-3
-      ">
-       {item.title}
-      </h2>
+    </main>
 
-      <p className="text-white/70">
-       {item.excerpt}
-      </p>
-
-     </div>
-
-    ))}
-
-   </div>
-
-  </main>
-
- )
+  )
 
 }
+```
