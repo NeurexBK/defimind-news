@@ -1,37 +1,23 @@
-export default function About(){
+export default function AboutPage() {
+  return (
+    <main className="max-w-4xl mx-auto px-6 py-20 text-white">
+      <h1 className="text-5xl font-black mb-10">
+        About DefiMind
+      </h1>
 
- return(
+      <div className="space-y-6 text-white/70 leading-8">
 
-  <main className="
-  min-h-screen
-  bg-[#030712]
-  text-white
-  p-10
-  max-w-4xl
-  mx-auto
-  ">
+        <p>
+          DefiMind is a crypto intelligence platform
+          focused on Bitcoin, Ethereum, ETFs,
+          AI and institutional market trends.
+        </p>
 
-   <h1 className="
-   text-5xl
-   font-black
-   mb-10
-   ">
-    About DefiMind
-   </h1>
+        <p>
+          Powered by Neurex AI.
+        </p>
 
-   <p className="
-   text-white/70
-   leading-8
-   ">
-
-    DefiMind is an AI-powered crypto intelligence
-    platform focused on Bitcoin, Ethereum,
-    macroeconomics, ETFs, AI and digital assets.
-
-   </p>
-
-  </main>
-
- )
-
+      </div>
+    </main>
+  )
 }

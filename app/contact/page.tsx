@@ -1,32 +1,22 @@
-export default function Contact(){
+export default function ContactPage() {
+  return (
+    <main className="max-w-4xl mx-auto px-6 py-20 text-white">
+      <h1 className="text-5xl font-black mb-10">
+        Contact
+      </h1>
 
- return(
+      <div className="space-y-6 text-white/70 leading-8">
 
-  <main className="
-  min-h-screen
-  bg-[#030712]
-  text-white
-  p-10
-  max-w-4xl
-  mx-auto
-  ">
+        <p>
+          Email:
+          contact@defimindnews.cloud
+        </p>
 
-   <h1 className="
-   text-5xl
-   font-black
-   mb-10
-   ">
-    Contact
-   </h1>
+        <p>
+          DefiMind — Crypto Intelligence
+        </p>
 
-   <p className="text-white/70 leading-8">
-
-   contact.defimind@gmail.com
-
-   </p>
-
-  </main>
-
- )
-
+      </div>
+    </main>
+  )
 }

@@ -237,12 +237,59 @@ const filteredNews = generatedNews.filter((item)=>{
 
         </div>
 
+
       </section>
 
+      <Trending coins={market || []} />
 
-   <Trending coins={market || []} />
+      <Newsletter />
 
-<Newsletter />
+      <footer
+        className="
+        border-t
+        border-white/10
+        py-10
+        mt-20
+        "
+      >
+
+        <div
+          className="
+          max-w-7xl
+          mx-auto
+          px-6
+          flex
+          flex-wrap
+          gap-6
+          text-white/60
+          "
+        >
+
+          <a href="/privacy-policy">
+            Privacy Policy
+          </a>
+
+          <a href="/terms">
+            Terms
+          </a>
+
+          <a href="/contact">
+            Contact
+          </a>
+
+          <a href="/about">
+            About
+          </a>
+
+        </div>
+
+      </footer>
+
+    </main>
+
+  )
+
+}
 
     </main>
 
