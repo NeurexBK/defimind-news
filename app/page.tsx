@@ -291,8 +291,5 @@ const filteredNews = generatedNews.filter((item)=>{
 
 }
 
-    </main>
 
-  )
 
-}
