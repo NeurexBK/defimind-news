@@ -5,86 +5,84 @@ import SearchBar from "@/components/SearchBar"
 import { useEffect,useState } from "react"
 import Trending from "@/components/Trending"
 import Market from "@/components/Market"
-import { getMarket } from "@/lib/coingecko"
 import Ticker from "@/components/Ticker"
 import Header from "@/components/Header"
 
+export default function Home(){
 
+  const [search,setSearch] = useState("")
 
- export default function Home(){
+  const [market,setMarket] = useState<any[]>([])
 
-const [search,setSearch] = useState("")
+  const [articles,setArticles] = useState<any[]>([])
 
-const [market,setMarket] = useState<any[]>([])
+  useEffect(()=>{
 
-const [articles,setArticles] = useState<any[]>([])
+    async function loadMarket(){
 
-useEffect(()=>{
+      try{
 
-  async function loadMarket(){
+        const response = await fetch(
 
-    try{
+          "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false"
 
-      const response = await fetch(
+        )
 
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false"
+        const data = await response.json()
 
-      )
+        setMarket(data)
 
-      const data = await response.json()
+      }catch(error){
 
-      setMarket(data)
+        console.log(error)
 
-    }catch(error){
-
-      console.log(error)
-
-    }
-
-  }
-
-  async function loadArticles(){
-
-    try{
-
-      const response = await fetch("/api/articles")
-
-      const data = await response.json()
-
-      setArticles(data)
-
-    }catch(error){
-
-      console.log(error)
+      }
 
     }
 
-  }
+    async function loadArticles(){
 
-  loadMarket()
+      try{
 
-  loadArticles()
+        const response = await fetch("/api/articles")
 
-},[])
+        const data = await response.json()
 
+        setArticles(data)
 
+      }catch(error){
 
-const filteredNews = articles.filter((item)=>{
+        console.log(error)
 
-  const query = search.toLowerCase()
+      }
 
-  return (
+    }
 
-    item.title.toLowerCase().includes(query) ||
+    loadMarket()
 
-    item.excerpt.toLowerCase().includes(query) ||
+    loadArticles()
 
-    item.content.toLowerCase().includes(query)
+  },[])
 
-  )
+  const filteredNews = Array.isArray(articles)
 
-})
+  ? articles.filter((item)=>{
 
+    const query = search.toLowerCase()
+
+    return (
+
+      item.title?.toLowerCase().includes(query) ||
+
+      item.excerpt?.toLowerCase().includes(query) ||
+
+      item.content?.toLowerCase().includes(query)
+
+    )
+
+  })
+
+  : []
 
   return(
 
@@ -93,80 +91,78 @@ const filteredNews = articles.filter((item)=>{
       <Header />
 
       <Ticker coins={market} />
-       
-<section
-      id="noticias"
-      className="
-      max-w-7xl
-      mx-auto
-      px-6
-      pb-20
-      ">
 
+      <section
+        id="noticias"
+        className="
+        max-w-7xl
+        mx-auto
+        px-6
+        pb-20
+        "
+      >
 
-  <div className="max-w-3xl">
+        <div className="max-w-3xl">
 
-    <div className="
-    inline-block
-    px-4
-    py-2
-    rounded-full
-    bg-purple-500/10
-    text-purple-400
-    mb-6
-    ">
-      🚀 Crypto Intelligence
-    </div>
+          <div className="
+          inline-block
+          px-4
+          py-2
+          rounded-full
+          bg-purple-500/10
+          text-purple-400
+          mb-6
+          ">
+            🚀 Crypto Intelligence
+          </div>
 
-    <h1 className="
-    text-6xl
-    font-black
-    leading-tight
-    mb-6
-    ">
-      Notícias Crypto
-      em Tempo Real
-    </h1>
+          <h1 className="
+          text-6xl
+          font-black
+          leading-tight
+          mb-6
+          ">
+            Notícias Crypto
+            em Tempo Real
+          </h1>
 
-    <p className="
-    text-xl
-    text-white/70
-    mb-10
-    ">
-      Tudo sobre Bitcoin,
-      Ethereum, ETFs,
-      DeFi e IA.
-    </p>
+          <p className="
+          text-xl
+          text-white/70
+          mb-10
+          ">
+            Tudo sobre Bitcoin,
+            Ethereum, ETFs,
+            DeFi e IA.
+          </p>
 
-    <SearchBar
-      onSearch={setSearch}
-    />
+          <SearchBar
+            onSearch={setSearch}
+          />
 
-<a
- href="#noticias"
- className="
- glow
- inline-block
- bg-purple-600
- hover:bg-purple-500
- transition
- px-8
- py-4
- rounded-2xl
- font-bold
- text-lg
- "
->
+          <a
+            href="#noticias"
+            className="
+            glow
+            inline-block
+            bg-purple-600
+            hover:bg-purple-500
+            transition
+            px-8
+            py-4
+            rounded-2xl
+            font-bold
+            text-lg
+            "
+          >
 
-  Explorar Agora
+            Explorar Agora
 
-</a>
+          </a>
 
+        </div>
 
-  </div>
-
-</section>
-
+      </section>
 
       <section className="
       max-w-7xl
@@ -198,6 +194,7 @@ const filteredNews = articles.filter((item)=>{
         lg:grid-cols-3
         gap-6
         ">
+
           {filteredNews.map((item,index)=>(
 
             <a
@@ -257,7 +254,6 @@ const filteredNews = articles.filter((item)=>{
           ))}
 
         </div>
-
 
       </section>
 
