@@ -44,15 +44,17 @@ export default function Ticker({ coins }: any){
 
   const allAssets = [
 
-    ...coins.map((coin:any)=>({
+    ...(coins || []).map((coin:any)=>({
 
       symbol:coin.symbol?.toUpperCase(),
 
       price:`$${Number(
-        coin.current_price
+        coin.current_price || 0
       ).toLocaleString()}`,
 
-      change:`${coin.price_change_percentage_24h?.toFixed(2)}%`
+      change:`${Number(
+        coin.price_change_percentage_24h || 0
+      ).toFixed(2)}%`
 
     })),
 
@@ -66,7 +68,8 @@ export default function Ticker({ coins }: any){
       className="
       border-y
       border-white/10
-      overflow-hidden
+      overflow-x-auto
+      whitespace-nowrap
       "
     >
 
@@ -74,10 +77,9 @@ export default function Ticker({ coins }: any){
         className="
         flex
         gap-10
-        whitespace-nowrap
-        py-4
         px-6
-        overflow-x-auto
+        py-4
+        min-w-max
         "
       >
 
@@ -89,27 +91,23 @@ export default function Ticker({ coins }: any){
             flex
             items-center
             gap-3
-            min-w-fit
             "
           >
 
-            <div className="font-bold text-2xl">
+            <div className="font-bold text-xl">
               {item.symbol}
             </div>
 
-            <div className="text-white/70 text-2xl">
+            <div className="text-white/70">
               {item.price}
             </div>
 
             <div
-              className={`
-                text-xl
-                ${
-                  item.change.includes("-")
-                  ? "text-red-400"
-                  : "text-green-400"
-                }
-              `}
+              className={
+                item.change.includes("-")
+                ? "text-red-400"
+                : "text-green-400"
+              }
             >
               {item.change}
             </div>

@@ -110,7 +110,17 @@ const scoredItems = allItems.map((item)=>{
 
 scoredItems.sort((a,b)=> b.score - a.score)
 
-const randomItem = scoredItems[0]?.item
+const topItems = scoredItems.slice(0,10)
+
+const randomIndex = Math.floor(
+  Math.random() * topItems.length
+)
+
+const randomItem = topItems[randomIndex]?.item
+
+console.log("Notícia escolhida:")
+console.log(randomItem?.title)
+
 
 
 if(!randomItem){

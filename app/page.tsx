@@ -263,7 +263,7 @@ href={`/noticias/${item?.slug}`}
 
       <Trending coins={market || []} />
 
-<TrendingMarkets />
+      <TrendingMarkets />
 
       <Newsletter />
 

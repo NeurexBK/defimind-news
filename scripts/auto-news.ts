@@ -1,13 +1,27 @@
 import cron from "node-cron"
 
-import "./ai-news"
-
-console.log("DefiMind AI iniciada...")
-
-cron.schedule("*/15 * * * *", async () => {
+async function runNews(){
 
   console.log("Gerando notícia automática...")
 
-  await import("./ai-news")
+  try{
+
+    await import("./ai-news")
+
+  }catch(error){
+
+    console.log(error)
+
+  }
+
+}
+
+console.log("DefiMind AI iniciada...")
+
+runNews()
+
+cron.schedule("*/10 * * * *", async ()=>{
+
+  await runNews()
 
 })
