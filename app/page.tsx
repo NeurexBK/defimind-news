@@ -115,7 +115,7 @@ setArticles(Array.isArray(data) ? data : [])
           text-purple-400
           mb-6
           ">
-            🚀 Crypto Intelligence
+
           </div>
 
           <h1 className="
@@ -124,8 +124,8 @@ setArticles(Array.isArray(data) ? data : [])
           leading-tight
           mb-6
           ">
-            Notícias Crypto
-            em Tempo Real
+Inteligência Financeira
+em Tempo Real
           </h1>
 
           <p className="
@@ -133,9 +133,10 @@ setArticles(Array.isArray(data) ? data : [])
           text-white/70
           mb-10
           ">
-            Tudo sobre Bitcoin,
-            Ethereum, ETFs,
-            DeFi e IA.
+
+Crypto, Wall Street, IA
+e economia global
+em um único feed inteligente.
           </p>
 
           <SearchBar
