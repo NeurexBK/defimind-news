@@ -44,11 +44,13 @@ export default function Home(){
 
       try{
 
-        const response = await fetch("/api/articles")
+const response = await fetch(
+  "https://defimindnews.cloud/api/articles"
+)
 
         const data = await response.json()
 
-        setArticles(data)
+setArticles(Array.isArray(data) ? data : [])
 
       }catch(error){
 
