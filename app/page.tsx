@@ -4,7 +4,6 @@ import Newsletter from "@/components/Newsletter"
 import SearchBar from "@/components/SearchBar"
 import { useEffect,useState } from "react"
 import Trending from "@/components/Trending"
-import generatedNews from "@/data/generated-news.json"
 import Market from "@/components/Market"
 import { getMarket } from "@/lib/coingecko"
 import Ticker from "@/components/Ticker"
@@ -17,6 +16,8 @@ import Header from "@/components/Header"
 const [search,setSearch] = useState("")
 
 const [market,setMarket] = useState<any[]>([])
+
+const [articles,setArticles] = useState<any[]>([])
 
 useEffect(()=>{
 
@@ -42,13 +43,33 @@ useEffect(()=>{
 
   }
 
+  async function loadArticles(){
+
+    try{
+
+      const response = await fetch("/api/articles")
+
+      const data = await response.json()
+
+      setArticles(data)
+
+    }catch(error){
+
+      console.log(error)
+
+    }
+
+  }
+
   loadMarket()
+
+  loadArticles()
 
 },[])
 
 
 
-const filteredNews = generatedNews.filter((item)=>{
+const filteredNews = articles.filter((item)=>{
 
   const query = search.toLowerCase()
 
@@ -290,6 +311,3 @@ const filteredNews = generatedNews.filter((item)=>{
   )
 
 }
-
-
-
