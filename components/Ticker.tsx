@@ -64,61 +64,89 @@ export default function Ticker({ coins }: any){
 
   return(
 
-    <div
-      className="
-      border-y
-      border-white/10
-      overflow-x-auto
-      whitespace-nowrap
-      "
-    >
+    <>
 
       <div
         className="
-        flex
-        gap-10
-        px-6
-        py-4
-        min-w-max
+        border-y
+        border-white/10
+        overflow-hidden
+        whitespace-nowrap
         "
       >
 
-        {allAssets.map((item,index)=>(
+        <div
+          className="
+          flex
+          gap-10
+          px-6
+          py-4
+          min-w-max
+          animate-scroll
+          "
+        >
 
-          <div
-            key={index}
-            className="
-            flex
-            items-center
-            gap-3
-            "
-          >
-
-            <div className="font-bold text-xl">
-              {item.symbol}
-            </div>
-
-            <div className="text-white/70">
-              {item.price}
-            </div>
+          {[...allAssets,...allAssets].map((item,index)=>(
 
             <div
-              className={
-                item.change.includes("-")
-                ? "text-red-400"
-                : "text-green-400"
-              }
+              key={index}
+              className="
+              flex
+              items-center
+              gap-3
+              "
             >
-              {item.change}
+
+              <div className="font-bold text-xl">
+                {item.symbol}
+              </div>
+
+              <div className="text-white/70">
+                {item.price}
+              </div>
+
+              <div
+                className={
+                  item.change.includes("-")
+                  ? "text-red-400"
+                  : "text-green-400"
+                }
+              >
+                {item.change}
+              </div>
+
             </div>
 
-          </div>
+          ))}
 
-        ))}
+        </div>
 
       </div>
 
-    </div>
+      <style jsx global>{`
+
+        @keyframes scroll {
+
+          0% {
+            transform: translateX(0%);
+          }
+
+          100% {
+            transform: translateX(-50%);
+          }
+
+        }
+
+        .animate-scroll {
+
+          animation:
+          scroll 30s linear infinite;
+
+        }
+
+      `}</style>
+
+    </>
 
   )
 
