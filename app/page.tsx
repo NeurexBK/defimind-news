@@ -197,11 +197,10 @@ setArticles(Array.isArray(data) ? data : [])
         gap-6
         ">
 
-          {filteredNews.map((item,index)=>(
-
+{Array.isArray(filteredNews) && filteredNews.map((item,index)=>( 
             <a
               key={index}
-              href={`/noticias/${item.slug}`}
+href={`/noticias/${item?.slug}`}
               className="
               block
               p-6
@@ -232,7 +231,7 @@ setArticles(Array.isArray(data) ? data : [])
                 text-white/50
                 text-xs
                 ">
-                  {item.sentiment}
+{item?.sentiment}
                 </div>
 
               </div>
@@ -242,13 +241,13 @@ setArticles(Array.isArray(data) ? data : [])
               font-bold
               mb-4
               ">
-                {item.title}
+{item?.title}
               </h2>
 
               <p className="
               text-white/70
               ">
-                {item.excerpt}
+{item?.excerpt}
               </p>
 
             </a>
