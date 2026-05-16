@@ -1,7 +1,7 @@
 import Reactions from "@/components/Reactions"
 import Link from "next/link"
-import news from "@/data/generated-news.json"
 import type { Metadata } from "next"
+import { supabase } from "@/lib/supabase"
 
 type Props = {
   params: Promise<{
@@ -15,9 +15,11 @@ export async function generateMetadata({
 
   const resolvedParams = await params
 
-  const article = news.find(
-    item => item.slug === resolvedParams.slug
-  )
+const { data: article } = await supabase
+  .from("articles")
+  .select("*")
+  .eq("slug", resolvedParams.slug)
+  .single()
 
   if (!article) {
 
@@ -66,9 +68,11 @@ export default async function NewsPage({ params }: Props) {
 
   const resolvedParams = await params
 
-  const article = news.find(
-    item => item.slug === resolvedParams.slug
-  )
+const { data: article } = await supabase
+  .from("articles")
+  .select("*")
+  .eq("slug", resolvedParams.slug)
+  .single()
 
   if (!article) {
 
