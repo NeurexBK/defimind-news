@@ -1,67 +1,127 @@
-type Props = {
- coins:any[]
-}
+"use client"
 
-export default function Ticker({coins}:Props){
+export default function Ticker({ coins }: any){
 
- return(
+  const rwaAssets = [
 
-  <div
-   id="mercado"
-   className="
-   border-y
-   border-white/5
-   bg-black/20
-   backdrop-blur-xl
-   "
-  >
+    {
+      symbol:"ONDO",
+      price:"$1.24",
+      change:"+12.4%"
+    },
 
-   <div className="
-   max-w-7xl
-   mx-auto
-   px-6
-   py-3
-   flex
-   items-center
-   gap-10
-   overflow-x-auto
-   ">
+    {
+      symbol:"POLYX",
+      price:"$0.42",
+      change:"+8.1%"
+    },
 
-    {coins.slice(0,3).map((coin:any)=>(
+    {
+      symbol:"XDC",
+      price:"$0.09",
+      change:"+5.8%"
+    },
 
-     <div
-      key={coin.id}
+    {
+      symbol:"XAUT",
+      price:"$3 210",
+      change:"+1.2%"
+    },
+
+    {
+      symbol:"NASDAQ",
+      price:"19 540",
+      change:"+2.1%"
+    },
+
+    {
+      symbol:"S&P500",
+      price:"5 420",
+      change:"+1.4%"
+    }
+
+  ]
+
+  const allAssets = [
+
+    ...coins.map((coin:any)=>({
+
+      symbol:coin.symbol?.toUpperCase(),
+
+      price:`$${Number(
+        coin.current_price
+      ).toLocaleString()}`,
+
+      change:`${coin.price_change_percentage_24h?.toFixed(2)}%`
+
+    })),
+
+    ...rwaAssets
+
+  ]
+
+  return(
+
+    <div
       className="
-      flex
-      items-center
-      gap-3
-      whitespace-nowrap
+      border-y
+      border-white/10
+      overflow-hidden
       "
-     >
+    >
 
-      <div className="font-bold">
-       {coin.symbol.toUpperCase()}
+      <div
+        className="
+        flex
+        gap-10
+        whitespace-nowrap
+        py-4
+        px-6
+        overflow-x-auto
+        "
+      >
+
+        {allAssets.map((item,index)=>(
+
+          <div
+            key={index}
+            className="
+            flex
+            items-center
+            gap-3
+            min-w-fit
+            "
+          >
+
+            <div className="font-bold text-2xl">
+              {item.symbol}
+            </div>
+
+            <div className="text-white/70 text-2xl">
+              {item.price}
+            </div>
+
+            <div
+              className={`
+                text-xl
+                ${
+                  item.change.includes("-")
+                  ? "text-red-400"
+                  : "text-green-400"
+                }
+              `}
+            >
+              {item.change}
+            </div>
+
+          </div>
+
+        ))}
+
       </div>
 
-      <div className="text-white/70">
-       ${coin.current_price.toLocaleString()}
-      </div>
+    </div>
 
-      <div className="
-      text-sm
-      text-purple-400
-      ">
-       {coin.price_change_percentage_24h?.toFixed(2)}%
-      </div>
-
-     </div>
-
-    ))}
-
-   </div>
-
-  </div>
-
- )
+  )
 
 }

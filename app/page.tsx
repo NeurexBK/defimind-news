@@ -1,5 +1,6 @@
 "use client"
 
+
 import Newsletter from "@/components/Newsletter"
 import SearchBar from "@/components/SearchBar"
 import { useEffect,useState } from "react"
@@ -7,6 +8,7 @@ import Trending from "@/components/Trending"
 import Market from "@/components/Market"
 import Ticker from "@/components/Ticker"
 import Header from "@/components/Header"
+import TrendingMarkets from "@/components/TrendingMarkets"
 
 export default function Home(){
 
@@ -260,6 +262,8 @@ href={`/noticias/${item?.slug}`}
       </section>
 
       <Trending coins={market || []} />
+
+<TrendingMarkets />
 
       <Newsletter />
 
