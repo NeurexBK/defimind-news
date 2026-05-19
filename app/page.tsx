@@ -1,4 +1,4 @@
-k"use client"
+"use client"
 
 import Newsletter from "@/components/Newsletter"
 import SearchBar from "@/components/SearchBar"
@@ -336,7 +336,7 @@ export default function Home() {
                 delay: index * 0.03
               }}
               key={index}
-              href={/noticias/${item?.slug}}
+              href={ `/noticias/${item?.slug}`}
               className="
               group
               relative
