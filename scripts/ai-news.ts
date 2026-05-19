@@ -22,6 +22,16 @@ async function generateNews(){
 
 const feeds = [
 
+"https://techcrunch.com/feed/",
+
+"https://www.theverge.com/rss/index.xml",
+
+"https://feeds.arstechnica.com/arstechnica/index",
+
+"https://www.wired.com/feed/rss",
+
+"https://decrypt.co/feed",
+
   "https://feeds.finance.yahoo.com/rss/2.0/headline?s=%5EGSPC&region=US&lang=en-US",
 
   "https://www.coindesk.com/arc/outboundfeeds/rss/",
@@ -52,29 +62,53 @@ for(const url of feeds){
 
 }
 
-
 const keywords = [
 
   "bitcoin",
-  "fed",
-  "etf",
   "ethereum",
   "solana",
   "xrp",
-  "war",
+  "crypto",
+  "etf",
+  "fed",
   "inflation",
   "interest rates",
   "recession",
-  "nvidia",
+  "wall street",
+  "nasdaq",
+  "s&p 500",
+
   "openai",
-  "ai",
-  "crypto",
-  "sec",
+  "anthropic",
+  "nvidia",
+  "xai",
+  "gemini",
+  "meta ai",
+  "artificial intelligence",
+  "ai startup",
+
+  "uniswap",
+  "aave",
+  "hyperliquid",
+  "jupiter",
+  "pancakeswap",
+  "dex",
+  "defi",
+
+  "stripe",
+  "revolut",
+  "robinhood",
+  "fintech",
+  "startup",
+  "venture capital",
+
   "hack",
   "liquidation",
-  "market crash"
+  "market crash",
+  "breaking",
 
 ]
+
 
 const scoredItems = allItems.map((item)=>{
 
