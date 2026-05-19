@@ -9,7 +9,7 @@ export default function ContactPage() {
 
         <p>
           Email:
-          contact@defimindnews.cloud
+          defimind.business@gmail.com
         </p>
 
         <p>
