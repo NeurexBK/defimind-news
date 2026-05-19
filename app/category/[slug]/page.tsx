@@ -78,7 +78,7 @@ export default async function CategoryPage({
 
             <a
               key={index}
-              href={/noticias/${item.slug}}
+              href={ `/noticias/${item.slug}`}
               className="
               block
               p-6
