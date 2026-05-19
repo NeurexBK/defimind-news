@@ -1,4 +1,4 @@
-"use client"
+k"use client"
 
 import Newsletter from "@/components/Newsletter"
 import SearchBar from "@/components/SearchBar"
@@ -7,6 +7,7 @@ import Trending from "@/components/Trending"
 import Ticker from "@/components/Ticker"
 import Header from "@/components/Header"
 import TrendingMarkets from "@/components/TrendingMarkets"
+import { motion } from "framer-motion"
 
 export default function Home() {
 
@@ -84,7 +85,20 @@ export default function Home() {
 
   return (
 
-    <main className="min-h-screen">
+    <main className="
+    min-h-screen
+    bg-[#030712]
+    text-white
+    overflow-x-hidden
+    ">
+
+      <div className="
+      fixed
+      inset-0
+      bg-[radial-gradient(circle_at_top,rgba(168,85,247,0.12),transparent_45%)]
+      pointer-events-none
+      z-0
+      " />
 
       <Header />
 
@@ -96,50 +110,83 @@ export default function Home() {
         max-w-7xl
         mx-auto
         px-6
-        pb-20
+        pb-24
+        pt-12
+        relative
+        z-10
         "
       >
 
-        <div className="max-w-3xl">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="max-w-4xl"
+        >
 
           <div
             className="
-            inline-block
-            px-4
+            inline-flex
+            items-center
+            gap-2
+            px-5
             py-2
             rounded-full
             bg-purple-500/10
-            text-purple-400
-            mb-6
+            border
+            border-purple-500/20
+            text-purple-300
+            mb-8
+            backdrop-blur-xl
             "
           >
+
+            🚀 Financial Intelligence Platform
 
           </div>
 
           <h1
             className="
             text-6xl
+            md:text-7xl
             font-black
-            leading-tight
-            mb-6
+            tracking-tight
+            leading-[1.02]
+            mb-8
             "
           >
+
             Inteligência Financeira
             <br />
-            em Tempo Real
+
+            <span className="
+            bg-gradient-to-r
+            from-purple-400
+            to-violet-200
+            bg-clip-text
+            text-transparent
+            ">
+
+              em Tempo Real
+
+            </span>
+
           </h1>
 
           <p
             className="
             text-xl
             text-white/70
-            mb-10
+            leading-9
+            max-w-2xl
+            mb-12
             "
           >
 
-            Crypto, Wall Street, IA
-            e economia global
-            em um único feed inteligente.
+            Crypto, Wall Street, IA,
+            ETFs, macroeconomia e
+            mercados globais em um
+            único feed inteligente.
 
           </p>
 
@@ -147,28 +194,50 @@ export default function Home() {
             onSearch={setSearch}
           />
 
-          <a
-            href="#noticias"
-            className="
-            glow
-            inline-block
-            bg-purple-600
-            hover:bg-purple-500
-            transition
-            px-8
-            py-4
-            rounded-2xl
-            font-bold
-            text-lg
-            mt-8
-            "
-          >
+          <div className="
+          flex
+          items-center
+          gap-4
+          mt-10
+          flex-wrap
+          ">
 
-            Explorar Agora
+            <a
+              href="#noticias"
+              className="
+              inline-flex
+              items-center
+              justify-center
+              bg-gradient-to-r
+              from-purple-600
+              to-violet-600
+              hover:scale-105
+              hover:shadow-2xl
+              hover:shadow-purple-500/20
+              transition-all
+              duration-300
+              px-8
+              py-4
+              rounded-2xl
+              font-bold
+              text-lg
+              "
+            >
 
-          </a>
+              Explorar Notícias
 
-        </div>
+            </a>
+
+            <div className="
+            text-sm
+            text-white/40
+            ">
+              Atualizado ao vivo • IA + Dados Financeiros
+            </div>
+
+          </div>
+
+        </motion.div>
 
       </section>
 
@@ -177,7 +246,7 @@ export default function Home() {
         max-w-7xl
         mx-auto
         px-6
-        pb-20
+        pb-24
         relative
         z-10
         "
@@ -188,16 +257,55 @@ export default function Home() {
           flex
           items-center
           justify-between
-          mb-10
+          mb-12
+          flex-wrap
+          gap-4
           "
         >
 
-          <h2 className="text-3xl font-bold">
-            Últimas Notícias
-          </h2>
+          <div>
 
-          <div className="text-purple-400">
+            <h2 className="
+            text-4xl
+            font-black
+            tracking-tight
+            ">
+              Últimas Notícias
+            </h2>
+
+            <p className="
+            text-white/50
+            mt-2
+            ">
+              Mercado financeiro atualizado em tempo real
+            </p>
+
+          </div>
+
+          <div className="
+          flex
+          items-center
+          gap-2
+          text-emerald-400
+          text-sm
+          bg-emerald-500/10
+          border
+          border-emerald-500/20
+          px-4
+          py-2
+          rounded-full
+          ">
+
+            <div className="
+            w-2
+            h-2
+            rounded-full
+            bg-emerald-400
+            animate-pulse
+            " />
+
             Atualizado ao vivo
+
           </div>
 
         </div>
@@ -208,33 +316,69 @@ export default function Home() {
           grid-cols-1
           md:grid-cols-2
           lg:grid-cols-3
-          gap-6
+          gap-7
           "
         >
 
           {Array.isArray(filteredNews) && filteredNews.map((item, index) => (
 
-            <a
+            <motion.a
+              initial={{
+                opacity: 0,
+                y: 25
+              }}
+              animate={{
+                opacity: 1,
+                y: 0
+              }}
+              transition={{
+                duration: 0.4,
+                delay: index * 0.03
+              }}
               key={index}
-              href={`/noticias/${item?.slug}`}
+              href={/noticias/${item?.slug}}
               className="
+              group
+              relative
+              overflow-hidden
               block
-              p-6
+              p-7
               rounded-3xl
               border
-              border-white/10
-              bg-white/5
-              hover:border-purple-500
-              transition
+              border-white/5
+              bg-gradient-to-b
+              from-white/[0.06]
+              to-white/[0.02]
+              hover:border-purple-500/30
+              hover:-translate-y-1
+              hover:shadow-2xl
+              hover:shadow-purple-500/10
+              transition-all
               duration-300
+              backdrop-blur-xl
               "
             >
 
+              <div className="
+              absolute
+              inset-0
+              bg-gradient-to-br
+              from-purple-500/0
+              to-purple-500/5
+              opacity-0
+              group-hover:opacity-100
+              transition
+              duration-300
+              " />
+
               <div
                 className="
+                relative
+                z-10
                 flex
                 justify-between
-                mb-4
+                items-center
+                mb-5
                 "
               >
 
@@ -242,15 +386,19 @@ export default function Home() {
                   className="
                   text-purple-400
                   text-xs
+                  font-semibold
+                  tracking-wide
+                  uppercase
                   "
                 >
-                  Por Neurex AI
+                  Neurex AI
                 </div>
 
                 <div
                   className="
-                  text-white/50
+                  text-white/40
                   text-xs
+                  capitalize
                   "
                 >
                   {item?.sentiment}
@@ -260,9 +408,15 @@ export default function Home() {
 
               <h2
                 className="
+                relative
+                z-10
                 text-2xl
                 font-bold
-                mb-4
+                leading-tight
+                tracking-tight
+                mb-5
+                group-hover:text-purple-200
+                transition
                 "
               >
                 {item?.title}
@@ -270,13 +424,48 @@ export default function Home() {
 
               <p
                 className="
-                text-white/70
+                relative
+                z-10
+                text-white/65
+                leading-7
+                text-[15px]
                 "
               >
                 {item?.excerpt}
               </p>
 
-            </a>
+              <div className="
+              relative
+              z-10
+              flex
+              items-center
+              justify-between
+              mt-8
+              pt-6
+              border-t
+              border-white/5
+              ">
+
+                <div className="
+                text-xs
+                text-white/35
+                ">
+                  Economia Global
+                </div>
+
+                <div className="
+                text-purple-300
+                text-sm
+                font-medium
+                group-hover:translate-x-1
+                transition
+                ">
+                  Ler mais →
+                </div>
+
+              </div>
+
+            </motion.a>
 
           ))}
 
@@ -284,7 +473,7 @@ export default function Home() {
 
       </section>
 
-      <div className="mt-20">
+      <div className="mt-10">
 
         <Trending coins={market || []} />
 
@@ -297,9 +486,11 @@ export default function Home() {
       <footer
         className="
         border-t
-        border-white/10
-        py-10
-        mt-20
+        border-white/5
+        py-14
+        mt-24
+        relative
+        z-10
         "
       >
 
@@ -309,27 +500,76 @@ export default function Home() {
           mx-auto
           px-6
           flex
-          flex-wrap
-          gap-6
-          text-white/60
+          flex-col
+          md:flex-row
+          items-center
+          justify-between
+          gap-8
           "
         >
 
-          <a href="/privacy-policy">
-            Privacy Policy
-          </a>
+          <div>
 
-          <a href="/terms">
-            Terms
-          </a>
+            <div className="
+            text-3xl
+            font-black
+            tracking-tight
+            ">
+              DefiMind
+            </div>
 
-          <a href="/contact">
-            Contact
-          </a>
+            <div className="
+            text-white/40
+            mt-3
+            max-w-md
+            leading-7
+            ">
+              Financial Intelligence Platform
+              focada em crypto, economia,
+              IA e mercados globais em tempo real.
+            </div>
 
-          <a href="/about">
-            About
-          </a>
+          </div>
+
+          <div
+            className="
+            flex
+            items-center
+            flex-wrap
+            gap-6
+            text-white/50
+            "
+          >
+
+            <a
+              href="/privacy-policy"
+              className="hover:text-purple-400 transition"
+            >
+              Privacy Policy
+            </a>
+
+            <a
+              href="/terms"
+              className="hover:text-purple-400 transition"
+            >
+              Terms
+            </a>
+
+            <a
+              href="/contact"
+              className="hover:text-purple-400 transition"
+            >
+              Contact
+            </a>
+
+            <a
+              href="/about"
+              className="hover:text-purple-400 transition"
+            >
+              About
+            </a>
+
+          </div>
 
         </div>
 
