@@ -1,40 +1,36 @@
 "use client"
 
-
 import Newsletter from "@/components/Newsletter"
 import SearchBar from "@/components/SearchBar"
-import { useEffect,useState } from "react"
+import { useEffect, useState } from "react"
 import Trending from "@/components/Trending"
-import Market from "@/components/Market"
 import Ticker from "@/components/Ticker"
 import Header from "@/components/Header"
 import TrendingMarkets from "@/components/TrendingMarkets"
 
-export default function Home(){
+export default function Home() {
 
-  const [search,setSearch] = useState("")
+  const [search, setSearch] = useState("")
 
-  const [market,setMarket] = useState<any[]>([])
+  const [market, setMarket] = useState<any[]>([])
 
-  const [articles,setArticles] = useState<any[]>([])
+  const [articles, setArticles] = useState<any[]>([])
 
-  useEffect(()=>{
+  useEffect(() => {
 
-    async function loadMarket(){
+    async function loadMarket() {
 
-      try{
+      try {
 
         const response = await fetch(
-
           "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false"
-
         )
 
         const data = await response.json()
 
         setMarket(data)
 
-      }catch(error){
+      } catch (error) {
 
         console.log(error)
 
@@ -42,19 +38,17 @@ export default function Home(){
 
     }
 
-    async function loadArticles(){
+    async function loadArticles() {
 
-      try{
+      try {
 
-const response = await fetch(
-  "https://defimindnews.cloud/api/articles"
-)
+        const response = await fetch("/api/articles")
 
         const data = await response.json()
 
-setArticles(Array.isArray(data) ? data : [])
+        setArticles(Array.isArray(data) ? data : [])
 
-      }catch(error){
+      } catch (error) {
 
         console.log(error)
 
@@ -66,29 +60,29 @@ setArticles(Array.isArray(data) ? data : [])
 
     loadArticles()
 
-  },[])
+  }, [])
 
   const filteredNews = Array.isArray(articles)
 
-  ? articles.filter((item)=>{
+    ? articles.filter((item) => {
 
-    const query = search.toLowerCase()
+        const query = search.toLowerCase()
 
-    return (
+        return (
 
-      item.title?.toLowerCase().includes(query) ||
+          item.title?.toLowerCase().includes(query) ||
 
-      item.excerpt?.toLowerCase().includes(query) ||
+          item.excerpt?.toLowerCase().includes(query) ||
 
-      item.content?.toLowerCase().includes(query)
+          item.content?.toLowerCase().includes(query)
 
-    )
+        )
 
-  })
+      })
 
-  : []
+    : []
 
-  return(
+  return (
 
     <main className="min-h-screen">
 
@@ -108,37 +102,45 @@ setArticles(Array.isArray(data) ? data : [])
 
         <div className="max-w-3xl">
 
-          <div className="
-          inline-block
-          px-4
-          py-2
-          rounded-full
-          bg-purple-500/10
-          text-purple-400
-          mb-6
-          ">
+          <div
+            className="
+            inline-block
+            px-4
+            py-2
+            rounded-full
+            bg-purple-500/10
+            text-purple-400
+            mb-6
+            "
+          >
 
           </div>
 
-          <h1 className="
-          text-6xl
-          font-black
-          leading-tight
-          mb-6
-          ">
-Inteligência Financeira
-em Tempo Real
+          <h1
+            className="
+            text-6xl
+            font-black
+            leading-tight
+            mb-6
+            "
+          >
+            Inteligência Financeira
+            <br />
+            em Tempo Real
           </h1>
 
-          <p className="
-          text-xl
-          text-white/70
-          mb-10
-          ">
+          <p
+            className="
+            text-xl
+            text-white/70
+            mb-10
+            "
+          >
 
-Crypto, Wall Street, IA
-e economia global
-em um único feed inteligente.
+            Crypto, Wall Street, IA
+            e economia global
+            em um único feed inteligente.
+
           </p>
 
           <SearchBar
@@ -158,6 +160,7 @@ em um único feed inteligente.
             rounded-2xl
             font-bold
             text-lg
+            mt-8
             "
           >
 
@@ -169,19 +172,25 @@ em um único feed inteligente.
 
       </section>
 
-      <section className="
-      max-w-7xl
-      mx-auto
-      px-6
-      pb-20
-      ">
+      <section
+        className="
+        max-w-7xl
+        mx-auto
+        px-6
+        pb-20
+        relative
+        z-10
+        "
+      >
 
-        <div className="
-        flex
-        items-center
-        justify-between
-        mb-10
-        ">
+        <div
+          className="
+          flex
+          items-center
+          justify-between
+          mb-10
+          "
+        >
 
           <h2 className="text-3xl font-bold">
             Últimas Notícias
@@ -193,17 +202,21 @@ em um único feed inteligente.
 
         </div>
 
-        <div className="
-        grid
-        md:grid-cols-2
-        lg:grid-cols-3
-        gap-6
-        ">
+        <div
+          className="
+          grid
+          grid-cols-1
+          md:grid-cols-2
+          lg:grid-cols-3
+          gap-6
+          "
+        >
 
-{Array.isArray(filteredNews) && filteredNews.map((item,index)=>( 
+          {Array.isArray(filteredNews) && filteredNews.map((item, index) => (
+
             <a
               key={index}
-href={`/noticias/${item?.slug}`}
+              href={`/noticias/${item?.slug}`}
               className="
               block
               p-6
@@ -217,40 +230,50 @@ href={`/noticias/${item?.slug}`}
               "
             >
 
-              <div className="
-              flex
-              justify-between
-              mb-4
-              ">
+              <div
+                className="
+                flex
+                justify-between
+                mb-4
+                "
+              >
 
-                <div className="
-                text-purple-400
-                text-xs
-                ">
+                <div
+                  className="
+                  text-purple-400
+                  text-xs
+                  "
+                >
                   Por Neurex AI
                 </div>
 
-                <div className="
-                text-white/50
-                text-xs
-                ">
-{item?.sentiment}
+                <div
+                  className="
+                  text-white/50
+                  text-xs
+                  "
+                >
+                  {item?.sentiment}
                 </div>
 
               </div>
 
-              <h2 className="
-              text-2xl
-              font-bold
-              mb-4
-              ">
-{item?.title}
+              <h2
+                className="
+                text-2xl
+                font-bold
+                mb-4
+                "
+              >
+                {item?.title}
               </h2>
 
-              <p className="
-              text-white/70
-              ">
-{item?.excerpt}
+              <p
+                className="
+                text-white/70
+                "
+              >
+                {item?.excerpt}
               </p>
 
             </a>
@@ -261,7 +284,11 @@ href={`/noticias/${item?.slug}`}
 
       </section>
 
-      <Trending coins={market || []} />
+      <div className="mt-20">
+
+        <Trending coins={market || []} />
+
+      </div>
 
       <TrendingMarkets />
 
