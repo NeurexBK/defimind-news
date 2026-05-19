@@ -72,15 +72,7 @@ export default function Ticker({ coins }: any) {
 
         {[...allAssets, ...allAssets].map((item, index) => (
 
-          <div
-            key={index}
-            className="
-            flex
-            items-center
-            gap-3
-            px-6
-            "
-          >
+<div className="ticker-track py-4 gap-8 whitespace-nowrap">
 
             <div className="font-bold">
               {item.symbol}

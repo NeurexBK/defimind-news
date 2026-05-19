@@ -32,3 +32,26 @@ body{
   border:1px solid rgba(255,255,255,.05);
   border-radius:24px;
 }
+
+@keyframes tickerScroll {
+
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+
+}
+
+.ticker-track {
+
+  display: flex;
+
+  width: max-content;
+
+  animation:
+  tickerScroll 40s linear infinite;
+
+}
